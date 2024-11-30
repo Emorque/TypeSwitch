@@ -8,20 +8,65 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <button id="t">
-            PressMe
-        </button>
-        <div>
+        <!-- Gemini is translation Langauge A into Langauge B -->
+        <!-- Form for selecting Langauge A-->
+         <form id="formA">
+            <fieldset>
+                <legend>Please select your base language</legend>
+                <div>
+                    <input type="radio" id="englishA" name="languageA" value="en" />
+                    <label for="englishA">English</label>
+
+                    <input type="radio" id="spanishA" name="languageA" value="es" />
+                    <label for="spanishA">Spanish</label>
+
+                    <input type="radio" id="japaneseA" name="languageA" value="ja" />
+                    <label for="japaneseA">Japanese</label>
+                </div>
+            </fieldset>
+         </form>
+
+         <!-- Form for selecting Langauge B-->
+         <form id="formB">
+            <fieldset>
+                <legend>Please select your translation language</legend>
+                <div>
+                    <input type="radio" id="englishB" name="languageB" value="en" />
+                    <label for="englishB">English</label>
+
+                    <input type="radio" id="spanishB" name="languageB" value="es" />
+                    <label for="spanishB">Spanish</label>
+
+                    <input type="radio" id="japaneseB" name="languageB" value="ja" />
+                    <label for="japaneseB">Japanese</label>
+                </div>
+            </fieldset>
+         </form>
+
+        <!-- Entry Field -->
+        <!-- <div>
             <label for="entry">Enter your Text</label>
-            <input type="text" id="entry" name="entry"/>        
-        </div>
+            <input type="text" id="entry" name="entry" role="textbox" contenteditable="true"/>        
+        </div> -->
+
+        <p>
+            <strong>Your Entry Below</strong>
+            <span id="entry" class="entry textfield" role="textbox" contenteditable="true"></span>
+        </p>
+
+        <!-- Submission Button -->
         <div>
             <input type="submit" id="entry_submission" value="Use this text"/>
         </div>
-        <div>
+        <!-- Result Field -->
+        <!-- <div>
             <label for="result">Translation</label>
             <input type="text" id="result" name="result"/>
-        </div>
+        </div> -->
+        <p>
+            <strong>Result</strong>
+            <span id="result" class="textfield" role="textbox" contenteditable="false"></span>
+        </p>
         
         <script src="index.js"></script>
     </body>

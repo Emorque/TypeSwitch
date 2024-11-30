@@ -1,0 +1,21 @@
+.textfield {
+    border: 1px solid black;
+    font-family: inherit;
+    font-size: inherit;
+    
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    min-height: 50px;
+}
+
+.entry[contenteditable]:empty::before {
+    content: "Hello there";
+    color: grey
+}
+
+p {
+    display: block;
+}
+

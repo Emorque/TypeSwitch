@@ -27,17 +27,37 @@
 //       // The translator can't be used at all.
 //   }
 
+// Button for translating
 button = document.getElementById("entry_submission");
+
+// Grabbing entry and result textboxes
 inputText = document.getElementById("entry");
 resultText = document.getElementById("result");
 
-const languagePair = {
-    sourceLanguage: 'en', // Or detect the source language with the Language Detection API
-    targetLanguage: 'es',
-  };
-  
+// Getting Language A and B
+// const formA = document.getElementById("formA");
+// const formB = document.getElementById("formB"); 
 
 async function getTranslator() {
+    const languageA = getLanguages("languageA");
+    const languageB = getLanguages("languageB");
+    console.log(languageA, languageB);
+
+    if (languageA === "null" || languageB === "null") {
+        alert("select a language");
+        return;
+    }
+
+    if (languageA === languageB) {
+        alert("same language selected");
+        return;
+    }
+
+    const languagePair = {
+        sourceLanguage: languageA, // Or detect the source language with the Language Detection API
+        targetLanguage: languageB,
+      };
+
     const canTranslate = await translation.canTranslate(languagePair);
     let translator; 
 
@@ -49,14 +69,26 @@ async function getTranslator() {
     else {
         console.log("Translator cannot be used");
     }
-
     translateText(translator);
-    // console.log(res);
-    // console.log(inputText.value)
 }
 
 async function translateText(translator) {
-    resultText.value = await translator.translate(inputText.value);
+    console.log(inputText.textContent);
+    resultText.textContent = await translator.translate(inputText.textContent);
 }
 
 button.addEventListener("click", getTranslator);
+
+function getLanguages(form) {
+    const selected = document.querySelector(`input[name="${form}"]:checked`);
+    if (selected){
+        const language = selected.value;
+        // console.log(language);
+        return language;
+    }
+    else {
+        // console.log("null");
+        return "null";
+    }
+}
+console.log(formA);
