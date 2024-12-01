@@ -11,7 +11,7 @@
 }
 
 .entry[contenteditable]:empty::before {
-    content: "Hello there";
+    content: "Awaiting your Translation";
     color: grey
 }
 

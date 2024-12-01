@@ -32,45 +32,82 @@
 // Button for text submission
 const button = document.getElementById("entry_submission");
 
-// Entry textbox
+// Textbox for the user to enter their paragraph/sentence
 const inputText = document.getElementById("entry");
-const resultText = document.getElementById("result");
 
-// Section for text entry 
+// The entire Entry Page Section
 const entryPage = document.getElementById("entryPage");
 
-// Getting the character limit
+// Element recording the character count for the initial text entry
 const charCount = document.getElementById("char_limit");
 
 // const sentencesPage = document.getElementById("sentencesPage");
 
-// English punctuation marks:
+// Punctuation Marks:
 const punctuation = {
     "en": "!?.",
-    "es": ".¿?¡!",
+    "es": ".?!", //I did have "¡" and "¿" here, but I do want to keep these p. marks 
     "ja": "。！？!?."
 };
 
-// Event Listener to update the char count element so that the user can track their character count
-// 
+// Event Listener to update the charCount element so that the user can track their character count
 inputText.addEventListener("input", () => {
     charCount.textContent = `${inputText.textContent.length}/1000`
     if (inputText.textContent.length > 1000) {
-        charCount.style.color = "red";
+        charCount.style.color = "red"; // Highlight the charCount once the user exceeds the limit
     }
     else {
         charCount.style.color = "black";
     }
 })
 
+// Once the first button is clicked, check if everything is valid
+button.addEventListener("click", verifyEntry);
 
-async function translateText(translator) {
-    console.log(inputText.textContent);
-    resultText.textContent = await translator.translate(inputText.textContent);
-    // console.log(await translator.translate(inputText.textContent));
+// Function to confirm that langauge selection and text entry is valid
+function verifyEntry() {
+    // Calling to get the languages
+    const languageA = getLanguages("languageA");
+    const languageB = getLanguages("languageB");
+
+    // If either language is unselected, alert user
+    if (languageA === "null" || languageB === "null") {
+        alert("Select A Language");
+        return;
+    }
+
+    // Currently, the translation API is said to only support bi-directional translations bettwen English-Spanish and English-Japanese
+    // https://docs.google.com/document/d/1bzpeKk4k26KfjtR-_d9OuXLMpJdRMiLZAOVNMuFIejk/edit?tab=t.0
+    // Will remove/edit this as support changes
+    if ((languageA === "es" && languageB === "ja") || (languageA === "ja" && languageB === "es")) {
+        alert("Bi-directional Translations Between Spanish and Japanese are not yet Supported");
+        return;
+    }
+
+    // If both languages are the same, alert user 
+    if (languageA === languageB) {
+        alert("Please Select Two Different Languages");
+        return;
+    }
+
+    // If the entry textbox is empty, alert user
+    if (inputText.textContent === "") {
+        alert("Plase Enter Text");
+        return;
+    }
+
+    // If the entry is above the limit, alert user 
+    // I may want to make this into a variable initialized at the start, and then call here and other places; so I can easily adjust the limit
+    if (inputText.textContent.length > 1000) {
+        alert("Please Shorten Your Entry");
+        return; 
+    }
+
+    // If everything is valid, start the game
+    gameStart(languageA, languageB, inputText.textContent)
 }
 
-// function to obtain the languages from the forms 
+// Function to obtain the Languages from the Forms 
 function getLanguages(form) {
     const selected = document.querySelector(`input[name="${form}"]:checked`);
     // If a language is selected, reutrn it 
@@ -83,54 +120,14 @@ function getLanguages(form) {
     }
 }
 
-function verifyEntry() {
-    // Calling to get the languages selected
-    const languageA = getLanguages("languageA");
-    const languageB = getLanguages("languageB");
-    // console.log(languageA, languageB);
-
-    // if either language is unselected, alert user
-    if (languageA === "null" || languageB === "null") {
-        alert("select a language");
-        return;
-    }
-
-    // Currently, the translation API is said to only support bi-directional translations bettwen English-Spanish and English-Japanese
-    // https://docs.google.com/document/d/1bzpeKk4k26KfjtR-_d9OuXLMpJdRMiLZAOVNMuFIejk/edit?tab=t.0
-    // Will remove/edit this as support changes
-    if ((languageA === "es" && languageB === "ja") || (languageA === "ja" && languageB === "es")) {
-        alert("Bi-directional Translations Between Spanish and Japanese are not yet Supported");
-        return;
-    }
-
-    // if both languages are the same, alert user 
-    if (languageA === languageB) {
-        alert("Please Select Two Different Languages");
-        return;
-    }
-
-    // If the entry textbox is empty, alert use
-    if (inputText.textContent === "") {
-        alert("Plase Enter Text");
-        return;
-    }
-
-
-
-    // If everything is valid, start the game
-    gameStart(languageA, languageB, inputText.textContent)
-}
-
+// Function to start the game (grab the text entry)
 async function gameStart(languageA, languageB, entryText){
-    console.log(languageA, languageB);
-    let score = 0;
-
     const languagePair = {
-        sourceLanguage: languageA, // Or detect the source language with the Language Detection API
+        sourceLanguage: languageA, // Or detect the source language with the Language Detection API, like Google Translate
         targetLanguage: languageB,
       };
 
-    const canTranslate = await translation.canTranslate(languagePair);
+    const canTranslate = await translation.canTranslate(languagePair); 
     let translator; 
 
     if (canTranslate !== 'no') {
@@ -143,59 +140,223 @@ async function gameStart(languageA, languageB, entryText){
         return;
     }
 
-    // By default, the entry text will be spliced by punctuation
+    // By default, the entry text will be spliced by punctuation marks
     // At first, I thought of using split with multiple parameters, but I would end up losing the punctuation marks I was using to split
-    // Doing it manually would be a easier to maintain the entire sentence as a whole, 
-    // and would allow me to make unique parameters for each language. For example, "upside down ?" for spanish
+    // Doing it manually would be a easier to maintain the each sentence as a whole, 
+    // and would allow me to make unique parameters for each language. For example, "¿" for spanish
 
-    // List of sentences to then be iterated through
-    let sentences = [];
-    let currentSentence = []; // Each sentence will be built with a list, then turned to string with .join 
+    let sentences = []; // Will contain all the sentences
+    let currentSentence = []; // Each sentence will be built with a list, then turned to string with .join('')
     for (let char of entryText) {
         // If a punctuation mark is found, add it to the built sentence and add it as a string to the sentences list
         if (punctuation[languageA].includes(char)) {
-            if (currentSentence.length === 0){
+            if (currentSentence.length > 0) {
+                currentSentence.push(char);
+                sentences.push(currentSentence.join('')); // According to some sources, this is vastly more optimal (building a string with a list) than continuous "+"
+            }
+            currentSentence = [] // Reset the currentSentence list to build the next sentence
+        }
+        // If there is whitespace unnecessarily added to the beginning of a sentence, ignore it
+        else if ((char === ' ' || char.charCodeAt(0) === 160) && currentSentence.length === 0) { // " " seems to have the code of 160, so its included here
                 continue;
             }
-            currentSentence.push(char);
-            sentences.push(currentSentence.join("")); // According to some sources, this is vastly more optimal than continuous "+" 
-            currentSentence = []; // Reset the currentSentence list to build the next string
-        }
-        // If there is empty space that is not apart of a sentence, ignore it 
-        else if ((char === ' ' || char.charCodeAt(0) === 160) && currentSentence.length === 0) { // " " seems to have the code of 160, so its included here
-            continue;
-        }
+        // For all other characters, add them to the currentSentence
         else {
             currentSentence.push(char);
         }
     }
 
+    // if (currentSentence.length !== 0 || (currentSentence[0] !== ' ' || currentSentence.charCodeAt(0) !== 160)) {
+    //     sentences.push(currentSentence.join(""));  
+    // } 
+
     // Catches if a sentence is built without a punctation mark at the end. Ex: "hello"
-    if (sentences.len !== 0) {
-        currentSentence.push(".");
-        sentences.push(currentSentence.join("")); // According to some sources, this is vastly more optimal than continuous "+" 
-    } 
-    
-    for (let sentence of sentences) {
-        setTimeout(async () => {
-            // translateText(sentence);
-            console.log(sentence);
-            resultText.textContent = await translator.translate(sentence);
-        }, 2000);
+    if (currentSentence.length > 0) {
+        sentences.push(currentSentence.join('').trim()); // trim takes care of any extra whitespace at the end
     }
     
-    // I'll add a way for users to manually enter sentences themselves
+    // Future feature will be to allow users to manually add each sentence themselves
+    entryPage.remove(); // Removes the initial entry section
+    gamePhase(sentences, translator);  // Time to enter gamePhase()
 }
 
-// button.addEventListener("click", getTranslator);
-button.addEventListener("click", verifyEntry);
-// button.addEventListener("click", testingJS);
+// Function for the gamePhase (user translates the sentence themselves)
+async function gamePhase(sentences, translator) {
+    let score = 0; // Score starts at 0 
 
-function testingJS() {
-    if (english.includes("!")) {
-        console.log("True");
+    const geminiTranslations = []; // List to contain all of the translations made by Translation API
+    const userTranslations = []; // List to contain all of the translations made by the User
+
+    const gameTemplate = document.querySelector('.game'); // Grab the template 
+
+    const gameTemplate_prime = gameTemplate.content.cloneNode(true); // Create a clone
+
+    // Grab each element from the clone
+    const gameEntry = gameTemplate_prime.querySelector(".gameEntry");
+    const gameResult = gameTemplate_prime.querySelector(".gameResult");
+    const gameButton = gameTemplate_prime.querySelector('.gameSubmission');
+    const gameCharLimit = gameTemplate_prime.querySelector('.game_char_limit');
+    document.body.appendChild(gameTemplate_prime); // Append the clone to the document
+
+    // Same as the charCount element from the previous phase
+    gameEntry.addEventListener("input", () => {
+        gameCharLimit.textContent = `${gameEntry.textContent.length}/1000`
+        if (gameEntry.textContent.length > 1000) {
+            gameCharLimit.style.color = "red";
+        }
+        else {
+            gameCharLimit.style.color = "black";
+        }
+    })
+
+    // Starting at index 0, and since I had an alert from the previous phase, there will always be at least one sentence
+    index = 0
+
+    let currentTranslation = await translator.translate(sentences[index]); // Grab the translation from Translation API
+    gameResult.textContent = sentences[index]; // Display the sentence untranslated
+
+    // Listener for when the user confirms their translation
+    gameButton.addEventListener("click", async () => {
+        // If the translation is too long, alert user
+        if (gameEntry.textContent.length > 1000) {
+            alert("Please Shorten Your Translation");
+            return;
+        }
+
+        // Push the two translations to their corresponding list 
+        geminiTranslations.push(currentTranslation);
+        userTranslations.push(gameEntry.textContent);
+
+        // Call getScore to get the score for this translation
+        score += getScore(gameEntry.textContent, currentTranslation);
+        index += 1 
+        gameEntry.textContent = ""; // Reset the textbox for the user 
+        
+        // Execute this once the last sentence has been translated by the user
+        if (index >= sentences.length) {
+            // Remove all the elements introduced from this phase 
+            gameEntry.remove();
+            gameResult.remove();
+            gameButton.remove();
+            document.querySelectorAll(".gameRemove").forEach(e => e.remove());
+            gotoResults(userTranslations, geminiTranslations, score / sentences.length); // Enter the next phase to 
+        }
+        gameResult.textContent = sentences[index]; // Set to the next untranslated sentence
+        currentTranslation = await translator.translate(sentences[index]); // Grab the translation for that sentence
+    })
+}
+
+// async function translateText(translator) {
+//     console.log(inputText.textContent);
+//     resultText.textContent = await translator.translate(inputText.textContent);
+// }
+
+function getScore(entry, translation) {
+    // There are many ways of implementing how I could score how well the user translated their sentences
+    // Some of them involve could involve dealing with NLP and different models, but for simplicity, I'll use dp approach for edit distance
+    // I'll get the min edit distance, return the calculated score
+
+    // This won't account for mistakes in grammer or syntax, but by adding special characters buttons like "á" for the user should make the score more in their favor
+    
+    // If the user did not enter anything, just return 0 
+    if (entry === "") {
+        return 0;
     }
-    else{
-        console.log("False");
+
+    // Create a 2d matrix, where the row/col are determined by the length of entry/translation
+    const matrix = new Array(entry.length + 1).fill(0).map(
+        () => new Array(translation.length + 1).fill(0));
+
+    // Initialize the rightmost column and bottommost row, as they represent the whole string's edit distance to a substring of the other
+    for (let c = 0; c <= translation.length; c++){
+        matrix[entry.length][c] = translation.length - c;
     }
+    for (let r = 0; r <= entry.length; r++){
+        matrix[r][translation.length] = entry.length - r;
+    }
+
+    // Each cell in the matrix represents the number of changes those current indexes (r,c) for "entry" to change to "translation"
+    // Since this is a bottom-up approach where previous change scores are pushed back up, matrix[0][0] will have the min number of changes
+    for (let r = entry.length - 1; r >= 0; r--){
+        for (let c = translation.length - 1; c >= 0; c--) {
+            // If the characters are that index match, no need for a change, so just grab what is at matrix[r + 1][c+1], since it is like these two characters are not even in either string
+            if (entry[r] === translation[c]) {
+                matrix[r][c] = matrix[r + 1][c + 1];
+            }
+            // Else, a change needs to be made, grab which ever path (deletion: matrix[r + 1][c], insertion: matrix[r][c + 1], replace: matrix[r + 1][c + 1]) has the lowest score, and add 1 to represent the need for a change here
+            else {
+                matrix[r][c] = 1 + (Math.min(matrix[r + 1][c + 1], 
+                    Math.min(matrix[r + 1][c], matrix[r][c + 1])));
+            }
+        }
+    }
+
+    // matrix[0][0] now houses the minimum number of changes needed to convert gameEntry (user's translation) to gameResult (gemini Translation)
+    // The score for this translation will be this score over the length of whichever string is the largest
+    // This should normalize the score 
+
+    // The "1-" and "*100" are for returning a percentage score instead of a decimal
+    return (1 - (matrix[0][0] / Math.max(entry.length, translation.length))) * 100;
+}
+
+// Function for displaying the overall score, and all the translations from both the Translation API and the User
+function gotoResults(userTranslations, geminiTranslations, score) {
+    // Results Template houses just the overall score 
+    const resultsTemplate = document.getElementById('resultsPage');
+    document.body.appendChild(resultsTemplate.content);
+
+    const scoreText = document.getElementById('score');
+    scoreText.textContent = `Your average score is ${score.toFixed(2)}`; // Cut the final score at the hundredths place and display
+
+    // Obtain the template for displaying one set of translations (1 of API and User)
+    const translationsTemplate = document.querySelector('.translationsList');
+    for (let i = 0; i < userTranslations.length; i++) {
+        const translations_prime = translationsTemplate.content.cloneNode(true); // Create a clone of the template
+        
+        // Set the values of each translation textbox from its corresponding list
+        const gTranslation = translations_prime.querySelector('.geminiTranslation');
+        const uTranslation = translations_prime.querySelector('.userTranslation');
+        
+        gTranslation.textContent = geminiTranslations[i];
+        uTranslation.textContent = userTranslations[i];
+        document.body.appendChild(translations_prime); // Append the clone to the document 
+    }
+}
+
+
+// button.addEventListener("click", testing);
+function testing() {
+    const gameEntry = "hello";
+    const gameResult = "Hyllo";
+
+    const matrix = new Array(gameEntry.length + 1).fill(0).map(() => new Array(gameResult.length + 1).fill(0));
+
+    for (let i = 0; i <= gameResult.length; i++){
+        matrix[i][gameResult.length] = gameResult.length - i;
+    }
+    for (let j = 0; j <= gameEntry.length; j++){
+        matrix[gameEntry.length][j] = gameEntry.length - j;
+    }
+
+    for (let r = gameEntry.length - 1; r >= 0; r--){
+        for (let c = gameResult.length - 1; c >= 0; c--) {
+            if (gameEntry[r] === gameResult[c]) {
+                matrix[r][c] = matrix[r + 1][c + 1];
+            }
+            else {
+                matrix[r][c] = 1 + (Math.min(matrix[r + 1][c + 1], 
+                    Math.min(matrix[r + 1][c], matrix[r][c + 1])));
+            }
+        }
+    }
+
+    // matrix[0][0] now houses the minimum number of changes needed to convert gameEntry (user's translation) to gameResult (gemini Translation)
+    // The score for this translation will be this score over the length of whichever string is the largest
+    // This should normalize the score 
+
+    // The "1-" and "*100" are for returning a percentage score instead of decimal
+    // console.log(Math.max(gameEntry.length, gameResult.length));
+    // console.log(matrix[0][0] / Math.max(gameEntry.length, gameResult.length));
+    // console.log((1 - (matrix[0][0] / Math.max(gameEntry.length, gameResult.length))) * 100);
+    return (1 - (matrix[0][0] - Math.max(gameEntry.length, gameResult.length))) * 100;
 }

@@ -13,7 +13,7 @@
             <!-- Form for selecting Langauge A-->
             <form id="formA">
                 <fieldset>
-                    <legend>Please select your base language</legend>
+                    <legend>Please select your Base Language</legend>
                     <div>
                         <input type="radio" id="englishA" name="languageA" value="en" />
                         <label for="englishA">English</label>
@@ -30,7 +30,7 @@
             <!-- Form for selecting Langauge B-->
             <form id="formB">
                 <fieldset>
-                    <legend>Please select your translation language</legend>
+                    <legend>Please select your Translation Language</legend>
                     <div>
                         <input type="radio" id="englishB" name="languageB" value="en" />
                         <label for="englishB">English</label>
@@ -45,37 +45,62 @@
             </form>
 
             <!-- Entry Field -->
-            <!-- <div>
-                <label for="entry">Enter your Text</label>
-                <input type="text" id="entry" name="entry" role="textbox" contenteditable="true"/>        
-            </div> -->
-
             <p>
-                <strong>Your Entry Below</strong>
+                <strong>Enter your Text Below</strong>
                 <span id="entry" class="entry textfield" role="textbox" contenteditable="true"></span>
                 <span id="char_limit">0/1000</span>
             </p>
 
             <!-- Submission Button -->
             <div>
-                <input type="submit" id="entry_submission" value="Use this text"/>
+                <input type="submit" id="entry_submission" value="Use This Text"/>
             </div>
-            <!-- Result Field -->
-            <!-- <div>
-                <label for="result">Translation</label>
-                <input type="text" id="result" name="result"/>
-            </div> -->
-            <p>
-                <strong>Result</strong>
-                <span id="result" class="textfield" role="textbox" contenteditable="false"></span>
-            </p>
             
         </section>
 
         <section id="sentencesPage">
+            <template class="game">
+                <!-- Sentence the User needs to translate -->
+                <p>
+                    <strong class="gameRemove">Base Sentence</strong>
+                    <span class="gameResult textfield" role="textbox" contenteditable="false"></span>
+                </p>
 
+                <!-- Text Field for User to enter their Translation -->
+                <p>
+                    <strong class="gameRemove">Enter Your Translation</strong>
+                    <span class="gameEntry entry textfield" role="textbox" contenteditable="true"></span>
+                    <span class="game_char_limit gameRemove">0/1000</span>
+                </p>
+
+                <div>
+                    <input type="submit" class="gameSubmission gameRemove" value="Submit Your Translation"/>
+                </div>
+
+            </template>
         </section>
-        
+
+        <template id="resultsPage">
+            <h1 id="score">
+                Your Score is X
+            </h1>
+            <h1>
+                Here Are The Translations:
+            </h1>
+        </template>
+        <template class="translationsList">
+            <!-- Translation made by Translation API -->
+            <p>
+                <strong>Translation API:</strong>
+                <span class="geminiTranslation textfield" role="textbox" contenteditable="false"></span>
+            </p>
+
+            <!-- Translation made by User -->
+            <p>
+                <strong>Your Translation:</strong>
+                <span class="userTranslation textfield" role="textbox" contenteditable="false"></span>
+            </p>
+        </template>
         <script src="index.js"></script>
     </body>
 </html>
