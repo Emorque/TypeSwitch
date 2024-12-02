@@ -9,98 +9,163 @@
     </head>
     <body>
         <section id="entryPage">
-            <!-- Gemini is translation Langauge A into Langauge B -->
-            <!-- Form for selecting Langauge A-->
-            <form id="formA">
-                <fieldset>
-                    <legend>Please select your Base Language</legend>
-                    <div>
-                        <input type="radio" id="englishA" name="languageA" value="en" />
-                        <label for="englishA">English</label>
+            <!-- Banner with Logo and Name -->
+            <div id="header">
+                <img/>
+                <h1>
+                    TypeSwitch
+                </h1>
+            </div>
 
-                        <input type="radio" id="spanishA" name="languageA" value="es" />
-                        <label for="spanishA">Spanish</label>
+            <!-- Steps on how to use TypeSwitch -->
+            <div id="stepsContainer">
+                <h2>How To Get Started</h2>
+                <p>
+                    1) Select Your "Base" Language (The Language Your Original Text Is In) 
+                </p>
+                <p>
+                    2) Select Your "Target" Language (The Language You Are Translating To)
+                </p>
+                <p>
+                    3) Copy & Paste some text from any source, whether it be from a book or a blog
+                </p>
+                <!-- <p id="collapsible">
+                    Unable to come up with some text?
+                </p> -->
+                <button id="collapsible">
+                    Unable to come up with some text?
+                </button>
+                <p id="collapsible_content">
+                    Try asking an AI Chatbot (ex: ChatGPT) with a prompt like <strong>Give me a short story in the length of a paragraph</strong>
+                </p>
 
-                        <input type="radio" id="japaneseA" name="languageA" value="ja" />
-                        <label for="japaneseA">Japanese</label>
-                    </div>
-                </fieldset>
-            </form>
-
-            <!-- Form for selecting Langauge B-->
-            <form id="formB">
-                <fieldset>
-                    <legend>Please select your Translation Language</legend>
-                    <div>
-                        <input type="radio" id="englishB" name="languageB" value="en" />
-                        <label for="englishB">English</label>
-
-                        <input type="radio" id="spanishB" name="languageB" value="es" />
-                        <label for="spanishB">Spanish</label>
-
-                        <input type="radio" id="japaneseB" name="languageB" value="ja" />
-                        <label for="japaneseB">Japanese</label>
-                    </div>
-                </fieldset>
-            </form>
-
-            <!-- Entry Field -->
-            <p>
-                <strong>Enter your Text Below</strong>
-                <span id="entry" class="entry textfield" role="textbox" contenteditable="true"></span>
-                <span id="char_limit">0/1000</span>
-            </p>
-
-            <!-- Submission Button -->
-            <div>
-                <input type="submit" id="entry_submission" value="Use This Text"/>
+                <br/>
             </div>
             
+
+            <div id="formContainer">
+                <!-- The Translation API is translation Language A into Language B -->
+                <!-- Form for selecting Language A-->
+                <form id="formA">
+                    <fieldset>
+                        <legend>Please select your Base Language</legend>
+                        <div>
+                            <input type="radio" id="englishA" name="languageA" value="en" />
+                            <label for="englishA">English</label>
+
+                            <input type="radio" id="spanishA" name="languageA" value="es" />
+                            <label for="spanishA">Spanish</label>
+
+                            <input type="radio" id="japaneseA" name="languageA" value="ja" />
+                            <label for="japaneseA">Japanese</label>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <!-- Form for selecting Language B-->
+                <form id="formB">
+                    <fieldset>
+                        <legend>Please select your Translation Language</legend>
+                        <div>
+                            <input type="radio" id="englishB" name="languageB" value="en" />
+                            <label for="englishB">English</label>
+
+                            <input type="radio" id="spanishB" name="languageB" value="es" />
+                            <label for="spanishB">Spanish</label>
+
+                            <input type="radio" id="japaneseB" name="languageB" value="ja" />
+                            <label for="japaneseB">Japanese</label>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+
+            <div id="entryForm">
+                <!-- Entry Field -->
+                <p id="entryField">
+                    <strong>Enter your Text Below:</strong>
+                    <span id="entry" class="entry textfield editable" role="textbox" contenteditable="true"></span>
+                    <span id="char_limit">0/1000</span>
+                </p>
+    
+                <!-- Submission Button -->
+                <div>
+                    <input type="submit" id="entry_submission" value="Use This Text"/>
+                </div>
+            </div>
+
+            <div id="backgroundInfo">
+                <br/>
+                <!-- Background on how TypeScript Works -->
+                <h2>How TypeSwitch Works:</h2>
+                <h3>TypeSwitch was created for the <a href="google.com">Google Gemini Hackathon</a></h3>
+                <p>Of the available APIs, TypeScript is made solely with Translation API</p>
+                
+                <p>My goal with TypeSwitch was to create a langauge learning tool that dealt with writing, or in this case, typing</p>
+                <p>Many langauge learning apps help with recognizing individual words</p>
+
+                <p>A key aspect of learning any new language is to learn context</p>
+                <p>With TypeSwitch, you can input whole sentences, which is more realistic to come across in reading or conversation than individual words</p>
+                <p>I have lot more that I plan to implement beyond what I can do for the hackathon, so if you'd like to see more, check out my <a href="google.com">GitHub</a></p>
+            </div>
         </section>
 
         <section id="sentencesPage">
             <template class="game">
-                <!-- Sentence the User needs to translate -->
-                <p>
-                    <strong class="gameRemove">Base Sentence</strong>
-                    <span class="gameResult textfield" role="textbox" contenteditable="false"></span>
-                </p>
+                <div class="gameContainer">
+                    <!-- Sentence the User needs to translate -->
+                    <p class="gameField">
+                        <strong class="gameRemove">Base Sentence:</strong>
+                        <span class="gameResult textfield" role="textbox" contenteditable="false"></span>
+                    </p>
 
-                <!-- Text Field for User to enter their Translation -->
-                <p>
-                    <strong class="gameRemove">Enter Your Translation</strong>
-                    <span class="gameEntry entry textfield" role="textbox" contenteditable="true"></span>
-                    <span class="game_char_limit gameRemove">0/1000</span>
-                </p>
+                    <!-- Text Field for User to enter their Translation -->
+                    <p class="gameField">
+                        <strong class="gameRemove">Enter Your Translation:</strong>
+                        <span class="gameEntry entry textfield editable" role="textbox" contenteditable="true"></span>
+                        <span class="game_char_limit gameRemove">0/1000</span>
+                    </p>
 
-                <div>
                     <input type="submit" class="gameSubmission gameRemove" value="Submit Your Translation"/>
                 </div>
-
             </template>
         </section>
 
         <template id="resultsPage">
-            <h1 id="score">
-                Your Score is X
-            </h1>
-            <h1>
-                Here Are The Translations:
-            </h1>
+            <div class="scoreContainer">
+                <h1 id="score">
+                    Your Score is X
+                </h1>
+                <h1>
+                    Here Are The Translations:
+                </h1>
+            </div>
         </template>
-        <template class="translationsList">
-            <!-- Translation made by Translation API -->
-            <p>
-                <strong>Translation API:</strong>
-                <span class="geminiTranslation textfield" role="textbox" contenteditable="false"></span>
-            </p>
-
-            <!-- Translation made by User -->
-            <p>
-                <strong>Your Translation:</strong>
-                <span class="userTranslation textfield" role="textbox" contenteditable="false"></span>
-            </p>
-        </template>
+        <div class="test">
+            <template class="translationsList">
+                <!-- Translation made by Translation API -->
+                <div class="translationContainer">
+                    <div>
+                        <strong>Original Sentence:</strong>
+                        <p class="ogSentence textfield" role="textbox" contenteditable="false"></p>
+                    </div>
+                </div>
+                <div class="translationContainer">
+                    <div>
+                        <strong>Translation API:</strong>
+                        <p class="geminiTranslation textfield"></p>
+                    </div>
+        
+                    <!-- Translation made by User -->
+                    <div>
+                        <strong>Your Translation:</strong>
+                        <p class="userTranslation textfield"></p>
+                    </div>
+                </div>
+                </br>
+            </template>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>

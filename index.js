@@ -29,6 +29,28 @@
 
 // Section for the starting page (text entry)
 
+// Getting both the collapsible button and content 
+const collapsibleButton = document.getElementById("collapsible");
+const collapsible_content = document.getElementById("collapsible_content");
+
+// Adding collapsible animation for when button is clicked
+collapsibleButton.addEventListener("click", () => {
+    // collapsibleButton.classList.toggle("active");
+    // if (collapsible_content.style.display === "none") {
+    //     collapsible_content.style.display = "block";
+    // }
+    // else {
+    //     collapsible_content.style.display = "none";
+    // }
+    if (collapsible_content.style.maxHeight) {
+        collapsible_content.style.maxHeight = null;
+    }
+    else {
+        collapsible_content.style.maxHeight = collapsible_content.scrollHeight + "px";
+    }
+})
+
+
 // Button for text submission
 const button = document.getElementById("entry_submission");
 
@@ -239,7 +261,7 @@ async function gamePhase(sentences, translator) {
             gameResult.remove();
             gameButton.remove();
             document.querySelectorAll(".gameRemove").forEach(e => e.remove());
-            gotoResults(userTranslations, geminiTranslations, score / sentences.length); // Enter the next phase to 
+            gotoResults(sentences, userTranslations, geminiTranslations, score / sentences.length); // Enter the next phase to 
         }
         gameResult.textContent = sentences[index]; // Set to the next untranslated sentence
         currentTranslation = await translator.translate(sentences[index]); // Grab the translation for that sentence
@@ -300,7 +322,7 @@ function getScore(entry, translation) {
 }
 
 // Function for displaying the overall score, and all the translations from both the Translation API and the User
-function gotoResults(userTranslations, geminiTranslations, score) {
+function gotoResults(sentences, userTranslations, geminiTranslations, score) {
     // Results Template houses just the overall score 
     const resultsTemplate = document.getElementById('resultsPage');
     document.body.appendChild(resultsTemplate.content);
@@ -313,12 +335,15 @@ function gotoResults(userTranslations, geminiTranslations, score) {
     for (let i = 0; i < userTranslations.length; i++) {
         const translations_prime = translationsTemplate.content.cloneNode(true); // Create a clone of the template
         
-        // Set the values of each translation textbox from its corresponding list
+        // Set the values of each textbox from its corresponding list
+        const ogSentence = translations_prime.querySelector('.ogSentence');
         const gTranslation = translations_prime.querySelector('.geminiTranslation');
         const uTranslation = translations_prime.querySelector('.userTranslation');
         
+        ogSentence.textContent = sentences[i]
         gTranslation.textContent = geminiTranslations[i];
         uTranslation.textContent = userTranslations[i];
+                
         document.body.appendChild(translations_prime); // Append the clone to the document 
     }
 }

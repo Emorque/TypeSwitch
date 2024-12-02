@@ -1,21 +1,149 @@
+*, *::before, *::after {
+    margin:0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+/* Smooth Scrooling if I want to add a nav bar */
+* {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: purple;
+    --secondary: black;
+    --bg: white; 
+    --secondarybg: grey;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    font-size: 1.6rem;
+
+    color: var(--secondary);
+    background-color: var(--bg);
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+strong {
+    font-weight: bolder;
+}
+
+code {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+img {
+    border-style: none;
+}
+
+button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+button, input {
+    overflow: visible;
+}
+
+progress {
+    vertical-align: baseline;
+}
+
+.entry[contenteditable]:empty::before {
+    content: "Awaiting your Translation";
+    color: white;
+}
+
+.editable {
+    background-color: var(--secondarybg);
+    /* color: red; */
+}
+
+#formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 90%;
+    max-width: 400px;
+}
+
+#entryForm, .gameContainer, .translationContainer, .scoreContainer, #stepsContainer, #backgroundInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreContainer {
+    text-align: center;
+}
+
+#stepsContainer *, #backgroundInfo *{
+    width: 90%;
+}
+
+#entryField, .gameContainer p, .translationContainer div, .scoreContainer h1 {
+    width: 90%;
+    max-width: 700px;
+}
+
 .textfield {
-    border: 1px solid black;
+    border: 1px solid var(--secondary);
     font-family: inherit;
     font-size: inherit;
     
     display: block;
     width: 100%;
+    padding: 1rem;
     overflow: hidden;
-    resize: both;
+    /* resize: both; */
     min-height: 50px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
-.entry[contenteditable]:empty::before {
-    content: "Awaiting your Translation";
-    color: grey
+#header, h2, h3, a, legend, strong {
+    color: var(--primary);
 }
 
-p {
-    display: block;
+input {
+    background-color: var(--secondarybg);
+    color: var(--primary);
 }
 
+#collapsible {
+    background-color: aqua;
+    cursor: pointer;
+}
+
+/* .active, #collapsible:hover {
+    
+} */
+
+#collapsible_content {
+    /* display: none; */
+    max-height: 0;
+    overflow: hidden;
+    background-color: blanchedalmond;
+
+    transition: max-height 0.2s ease-out;
+}
