@@ -40,11 +40,16 @@
                     Unable to come up with some text?
                 </p> -->
                 <button id="collapsible">
-                    Unable To Find Text?
+                    Translations Not Working?
                 </button>
-                <p id="collapsible_content">
-                    Try asking an AI Chatbot (ex: ChatGPT) with a prompt like: <strong>Write a short story in a single paragraph</strong>
-                </p>
+                <div id="collapsible_content">
+                    <p>1) Go to the following <strong>chrome://flags/#translation-api</strong> and Enable "Experimental translation API"</p>
+                    <p>2) Navigate to <strong><a href="https://translation-demo.glitch.me/" target="_blank">here</a></strong><p>
+                    <p>3) Click “from en to es” and “from en to ja” under translate()</p>
+                    <p>*Wait (language models and translation components are downloaded in the background)</p>
+                    <p>4) Navigate to <strong>chrome://components</strong> and look for TranslateKit components to monitor progress if you want</p>                        
+                    <p>5) Now the translation API should be ready to translate for English ⇔ Spanish and English ⇔ Japanese language pairs</p>
+                </div>
 
                 <br/>
             </div>
