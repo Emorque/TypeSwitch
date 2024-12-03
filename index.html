@@ -6,12 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="TypeSwitch">
         <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="Logo/TypeSwitch.svg">
+
     </head>
     <body>
         <section id="entryPage">
             <!-- Banner with Logo and Name -->
             <div id="header">
-                <img/>
+                <img
+                    src="Logo/TypeSwitch.svg"
+                    alt="TypeSwtich Logo"
+                    width="100px"
+                    height="100px"
+                />
                 <h1>
                     TypeSwitch
                 </h1>
@@ -33,10 +40,10 @@
                     Unable to come up with some text?
                 </p> -->
                 <button id="collapsible">
-                    Unable to come up with some text?
+                    Unable To Find Text?
                 </button>
                 <p id="collapsible_content">
-                    Try asking an AI Chatbot (ex: ChatGPT) with a prompt like <strong>Give me a short story in the length of a paragraph</strong>
+                    Try asking an AI Chatbot (ex: ChatGPT) with a prompt like: <strong>Write a short story in a single paragraph</strong>
                 </p>
 
                 <br/>
@@ -50,13 +57,13 @@
                     <fieldset>
                         <legend>Please select your Base Language</legend>
                         <div>
-                            <input type="radio" id="englishA" name="languageA" value="en" />
+                            <input type="radio" id="englishA" class="radio" name="languageA" value="en" />
                             <label for="englishA">English</label>
 
-                            <input type="radio" id="spanishA" name="languageA" value="es" />
+                            <input type="radio" id="spanishA" class="radio" name="languageA" value="es" />
                             <label for="spanishA">Spanish</label>
 
-                            <input type="radio" id="japaneseA" name="languageA" value="ja" />
+                            <input type="radio" id="japaneseA" class="radio" name="languageA" value="ja" />
                             <label for="japaneseA">Japanese</label>
                         </div>
                     </fieldset>
@@ -67,13 +74,13 @@
                     <fieldset>
                         <legend>Please select your Translation Language</legend>
                         <div>
-                            <input type="radio" id="englishB" name="languageB" value="en" />
+                            <input type="radio" id="englishB" class="radio" name="languageB" value="en" />
                             <label for="englishB">English</label>
 
-                            <input type="radio" id="spanishB" name="languageB" value="es" />
+                            <input type="radio" id="spanishB" class="radio" name="languageB" value="es" />
                             <label for="spanishB">Spanish</label>
 
-                            <input type="radio" id="japaneseB" name="languageB" value="ja" />
+                            <input type="radio" id="japaneseB" class="radio" name="languageB" value="ja" />
                             <label for="japaneseB">Japanese</label>
                         </div>
                     </fieldset>
@@ -81,11 +88,14 @@
 
             </div>
 
+            <br/>
+
             <div id="entryForm">
                 <!-- Entry Field -->
                 <p id="entryField">
                     <strong>Enter your Text Below:</strong>
                     <span id="entry" class="entry textfield editable" role="textbox" contenteditable="true"></span>
+                    <br/>
                     <span id="char_limit">0/1000</span>
                 </p>
     
@@ -99,15 +109,14 @@
                 <br/>
                 <!-- Background on how TypeScript Works -->
                 <h2>How TypeSwitch Works:</h2>
-                <h3>TypeSwitch was created for the <a href="google.com">Google Gemini Hackathon</a></h3>
+                <p>TypeSwitch was created for the <strong><a href="https://googlechromeai.devpost.com/?linkId=11071015" target="_blank">Google Gemini Hackathon</a></strong></p>
                 <p>Of the available APIs, TypeScript is made solely with Translation API</p>
                 
-                <p>My goal with TypeSwitch was to create a langauge learning tool that dealt with writing, or in this case, typing</p>
-                <p>Many langauge learning apps help with recognizing individual words</p>
+                <p>My goal with TypeSwitch was to create a language learning tool focused on writing—specifically, typing.</p>
+                <p>While many language learning apps excel at teaching individual words, a crucial aspect of mastering any new language is understanding context.</p>
 
-                <p>A key aspect of learning any new language is to learn context</p>
-                <p>With TypeSwitch, you can input whole sentences, which is more realistic to come across in reading or conversation than individual words</p>
-                <p>I have lot more that I plan to implement beyond what I can do for the hackathon, so if you'd like to see more, check out my <a href="google.com">GitHub</a></p>
+                <p>With TypeSwitch, you can practice entire sentences, providing a more realistic approach compared to word-only exercises, better mimicking real-world reading and conversation.</p>
+                <p>There's much more in the works beyond what I developed for this hackathon. To explore further, feel free to visit my <a href="https://github.com/Emorque/TypeSwitch" target="_blank">GitHub</a></p>
             </div>
         </section>
 
@@ -124,6 +133,7 @@
                     <p class="gameField">
                         <strong class="gameRemove">Enter Your Translation:</strong>
                         <span class="gameEntry entry textfield editable" role="textbox" contenteditable="true"></span>
+                        <br/>
                         <span class="game_char_limit gameRemove">0/1000</span>
                     </p>
 

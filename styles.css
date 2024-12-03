@@ -10,10 +10,10 @@
 }
 
 :root {
-    --primary: purple;
+    --primary: #E44A36;
     --secondary: black;
-    --bg: white; 
-    --secondarybg: grey;
+    --bg: #232220; 
+    --secondarybg: #3E3C38;
 }
 
 html {
@@ -24,8 +24,11 @@ body {
     box-sizing: border-box;
     font-size: 1.6rem;
 
-    color: var(--secondary);
+    /* color: var(--secondary); */
+    color: white;
     background-color: var(--bg);
+
+    font-family: sans-serif;
 }
 
 h1 {
@@ -40,11 +43,6 @@ a {
 
 strong {
     font-weight: bolder;
-}
-
-code {
-    font-family: monospace, monospace;
-    font-size: 1em;
 }
 
 img {
@@ -71,7 +69,7 @@ progress {
     color: white;
 }
 
-.editable {
+.textfield {
     background-color: var(--secondarybg);
     /* color: red; */
 }
@@ -130,8 +128,42 @@ input {
     color: var(--primary);
 }
 
+#entry_submission, .gameSubmission, .translationContainer{
+    padding: 1rem;
+    color: white;
+}
+
+#backgroundInfo, #stepsContainer, .gameContainer{
+    gap: 1rem;
+}
+
+.radio {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 1px solid black;
+    position: relative;
+    margin: 5px;
+    top:4px;
+    transition: 0.2s all linear;
+}
+
+
+
+.radio:checked {
+    border: 6px solid var(--primary);
+}
+
+.radio:active {
+    /* background-color: white; */
+    color: var(--primary);
+    outline: 1px solid transparent;
+}
+
+
 #collapsible {
-    background-color: aqua;
+    background-color: var(--primary);
     cursor: pointer;
 }
 
@@ -143,7 +175,12 @@ input {
     /* display: none; */
     max-height: 0;
     overflow: hidden;
-    background-color: blanchedalmond;
+    background-color: #232220;
 
     transition: max-height 0.2s ease-out;
+}
+
+#header {
+    display: flex;
+    align-items: center;
 }

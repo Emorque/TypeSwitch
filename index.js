@@ -76,10 +76,10 @@ const punctuation = {
 inputText.addEventListener("input", () => {
     charCount.textContent = `${inputText.textContent.length}/1000`
     if (inputText.textContent.length > 1000) {
-        charCount.style.color = "red"; // Highlight the charCount once the user exceeds the limit
+        charCount.style.color = "#E44A36"; // Highlight the charCount once the user exceeds the limit
     }
     else {
-        charCount.style.color = "black";
+        charCount.style.color = "white";
     }
 })
 
@@ -227,7 +227,7 @@ async function gamePhase(sentences, translator) {
             gameCharLimit.style.color = "red";
         }
         else {
-            gameCharLimit.style.color = "black";
+            gameCharLimit.style.color = "#E44A36";
         }
     })
 
