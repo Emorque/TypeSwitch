@@ -3,6 +3,9 @@
 
 TypeSwitch is a language learning application the goal of helping you level up with writing proficiency when learning a new language, built with the Translation API from the Google Chrome Built-in AI - Early Preview Program. 
 
+![TypeSwitch Homescreen](https://github.com/user-attachments/assets/7044bbab-2b31-4c39-948a-e9a925843bd8)
+
+
 ## Setup
 ##### TypeScript requires an experimental flag from Chrome 131+ on desktop platforms
 ##### It is recommended to use with [Chrome Canary](https://www.google.com/chrome/canary/) or [Chrome Dev](https://www.google.com/chrome/dev/?extra=devchannel) 
