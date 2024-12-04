@@ -1,7 +1,7 @@
-# TypeSwitch
-## A Language Learning Application
+![TypeSwitch Logo](/Logo/TypeSwitch.svg)
+# TypeSwitch - A Language Learning Application
 
-TypeSwitch is a language learning application the goal of helping you write translates of your desired language in context, built with the Translation API from the Google Chrome Built-in AI - Early Preview Program. 
+TypeSwitch is a language learning application the goal of helping you level up with writing proficiency when learning a new language, built with the Translation API from the Google Chrome Built-in AI - Early Preview Program. 
 
 ## Setup
 ##### TypeScript requires an experimental flag from Chrome 131+ on desktop platforms
@@ -25,9 +25,16 @@ TypeSwitch is a language learning application the goal of helping you write tran
 
 ## Want to Use TypeScript Locally?
 1. Have the neccessary flag enabled in your Chrome of choice
-2. Ensure your translation pairs are downloaded
+2. Ensure your translation pairs are downloaded to your browser
 3. Clone this repo to your local machine
 4. Run the html on the same Chrome browser you have the flag enabled in
+5. Viola!
+
+## Features to work on in the future: 
+1. Create a backend to house user data and authentication. 
+2. Create a complementary extension.  
+3. Have a daily sentence! Kind of like how Wordle has a daily word people try to guess. 
+4. Improve the UI/UX.
 
 ## License
 MIT
