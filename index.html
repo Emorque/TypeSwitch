@@ -12,21 +12,23 @@
     <body>
         <section id="entryPage">
             <!-- Banner with Logo and Name -->
-            <div id="header">
-                <img
-                    src="Logo/TypeSwitch.svg"
-                    alt="TypeSwtich Logo"
-                    width="100px"
-                    height="100px"
-                />
-                <h1>
-                    TypeSwitch
-                </h1>
+            <div id="headerContainer">
+                <div id="header">
+                    <img
+                        src="Logo/TypeSwitch.svg"
+                        alt="TypeSwtich Logo"
+                        width="100px"
+                        height="100px"
+                    />
+                    <h1>
+                        TypeSwitch
+                    </h1>
+                </div>
             </div>
 
             <!-- Steps on how to use TypeSwitch -->
             <div id="stepsContainer">
-                <h2>How To Get Started</h2>
+                <!-- <h2>How To Get Started</h2>
                 <p>
                     1) Select Your "Base" Language (The Language Your Original Text Is In).
                 </p>
@@ -35,7 +37,7 @@
                 </p>
                 <p>
                     3) Copy & Paste some text from any source, whether it be from a book, blog, forum, or even AI.
-                </p>
+                </p> -->
                 <!-- <p id="collapsible">
                     Unable to come up with some text?
                 </p> -->
@@ -43,12 +45,12 @@
                     Translations Not Working?
                 </button>
                 <div id="collapsible_content">
-                    <p>1) Go to the following <strong>chrome://flags/#translation-api</strong> and Enable "Experimental translation API"</p>
-                    <p>2) Navigate to <strong><a href="https://translation-demo.glitch.me/" target="_blank">here</a></strong><p>
-                    <p>3) Click “from en to es” and “from en to ja” under translate()</p>
-                    <p>*Wait (language models and translation components are downloaded in the background)</p>
-                    <p>4) Navigate to <strong>chrome://components</strong> and look for TranslateKit components to monitor progress if you want</p>                        
-                    <p>5) Now the translation API should be ready to translate for English ⇔ Spanish and English ⇔ Japanese language pairs</p>
+                    <p>1) Go to: <strong>chrome://flags/#translation-api</strong> and enable "Experimental translation API"</p>
+                    <p>2) Navigate to <strong><a href="https://translation-demo.glitch.me/" target="_blank">here</a></strong></p>
+                    <p>3) Click “from en to es” and “from en to ja” under canTranslate()</p>
+                    <p style="font-style: italic;">Please wait as language models and translation components are downloaded in the background</p>
+                    <p>4) Go to: <strong>chrome://components</strong> and look for TranslateKit components to monitor progress</p>                        
+                    <p>5) Translation API is now ready to translate English ⇔ Spanish and English ⇔ Japanese</p>
                 </div>
 
                 <br/>
@@ -60,7 +62,7 @@
                 <!-- Form for selecting Language A-->
                 <form id="formA">
                     <fieldset>
-                        <legend>Please select your Base Language</legend>
+                        <legend>Base Language</legend>
                         <div>
                             <input type="radio" id="englishA" class="radio" name="languageA" value="en" />
                             <label for="englishA">English</label>
@@ -77,7 +79,7 @@
                 <!-- Form for selecting Language B-->
                 <form id="formB">
                     <fieldset>
-                        <legend>Please select your Translation Language</legend>
+                        <legend>Translation Language</legend>
                         <div>
                             <input type="radio" id="englishB" class="radio" name="languageB" value="en" />
                             <label for="englishB">English</label>
@@ -98,7 +100,7 @@
             <div id="entryForm">
                 <!-- Entry Field -->
                 <p id="entryField">
-                    <strong>Enter your Text Below:</strong>
+                    <strong>Enter Your Text:</strong>
                     <span id="entry" class="entry textfield editable" role="textbox" contenteditable="true"></span>
                     <br/>
                     <span id="char_limit">0/1000</span>
@@ -110,18 +112,36 @@
                 </div>
             </div>
 
-            <div id="backgroundInfo">
+            <!-- <div id="backgroundInfo">
                 <br/>
-                <!-- Background on how TypeScript Works -->
                 <h2>How TypeSwitch Works:</h2>
                 <p>TypeSwitch was created for the <strong><a href="https://googlechromeai.devpost.com/?linkId=11071015" target="_blank">Google Chrome Built-in AI Challenge</a></strong></p>
-                <p>Of the available APIs, TypeScript is made solely with Translation API.</p>
+                <p>Of the available APIs, TypeSwitch is made solely with Translation API.</p>
                 
                 <p>My goal with TypeSwitch was to create a language learning tool focused on writing—specifically, typing.</p>
                 <p>While many language learning apps excel at teaching individual words, a crucial aspect of mastering any new language is understanding context.</p>
 
                 <p>With TypeSwitch, you can practice entire sentences, providing a more realistic approach compared to word-only exercises, better mimicking real-world reading and conversation.</p>
                 <p>There's much more in the works beyond what I developed for this hackathon. To explore further, feel free to visit my <a href="https://github.com/Emorque/TypeSwitch" target="_blank">GitHub.</a></p>
+            </div> -->
+            <br/>
+
+            <!-- Background on TypeSwitch -->
+            <div id="infoContainer">
+                <button id="collapsible2">
+                    About TypeSwitch
+                </button>
+                <div id="collapsible_content2">
+                    <p>TypeSwitch was created for the <strong><a href="https://googlechromeai.devpost.com/?linkId=11071015" target="_blank">Google Chrome Built-in AI Challenge</a></strong></p>
+                    
+                    <p>TypeSwitch is made solely with Translation API</p>
+                    
+                    <p>My goal with TypeSwitch was to create a language learning tool focused on writing—specifically, typing</p>
+                    <p>While many language learning apps excel at teaching individual words, a crucial aspect of mastering any new language is understanding context</p>
+
+                    <p>With TypeSwitch, you can practice entire sentences, providing a more realistic approach compared to word-only exercises, better mimicking real-world reading and conversation</p>
+                    <p>There's much more in the works beyond what I developed for this hackathon. Feel free to visit my <a href="https://github.com/Emorque/TypeSwitch" target="_blank">GitHub</a></p>    
+                </div>
             </div>
         </section>
 

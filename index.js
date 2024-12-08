@@ -33,6 +33,9 @@
 const collapsibleButton = document.getElementById("collapsible");
 const collapsible_content = document.getElementById("collapsible_content");
 
+const collapsibleButton2 = document.getElementById("collapsible2");
+const collapsible_content2 = document.getElementById("collapsible_content2");
+
 // Adding collapsible animation for when button is clicked
 collapsibleButton.addEventListener("click", () => {
     // collapsibleButton.classList.toggle("active");
@@ -47,6 +50,24 @@ collapsibleButton.addEventListener("click", () => {
     }
     else {
         collapsible_content.style.maxHeight = collapsible_content.scrollHeight + "px";
+    }
+})
+
+
+// Adding collapsible animation for when button is clicked
+collapsibleButton2.addEventListener("click", () => {
+    // collapsibleButton.classList.toggle("active");
+    // if (collapsible_content.style.display === "none") {
+    //     collapsible_content.style.display = "block";
+    // }
+    // else {
+    //     collapsible_content.style.display = "none";
+    // }
+    if (collapsible_content2.style.maxHeight) {
+        collapsible_content2.style.maxHeight = null;
+    }
+    else {
+        collapsible_content2.style.maxHeight = collapsible_content2.scrollHeight + "px";
     }
 })
 
