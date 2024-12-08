@@ -93,6 +93,13 @@ const punctuation = {
     "ja": "。！？!?."
 };
 
+// Special Characters
+const specialCharacters = {
+    "es": "áÁéÉíÍñÑóÓúÚü¡«»",
+    "en": "",
+    "ja": ""
+};
+
 // Event Listener to update the charCount element so that the user can track their character count
 inputText.addEventListener("input", () => {
     charCount.textContent = `${inputText.textContent.length}/1000`
@@ -220,11 +227,11 @@ async function gameStart(languageA, languageB, entryText){
     
     // Future feature will be to allow users to manually add each sentence themselves
     entryPage.remove(); // Removes the initial entry section
-    gamePhase(sentences, translator);  // Time to enter gamePhase()
+    gamePhase(sentences, translator, languageB);  // Time to enter gamePhase()
 }
 
 // Function for the gamePhase (user translates the sentence themselves)
-async function gamePhase(sentences, translator) {
+async function gamePhase(sentences, translator, languageB) {
     let score = 0; // Score starts at 0 
 
     const geminiTranslations = []; // List to contain all of the translations made by Translation API
@@ -251,6 +258,49 @@ async function gamePhase(sentences, translator) {
             gameCharLimit.style.color = "white";
         }
     })
+
+    // Special Characters template
+    // const specialCharsTemplate = document.querySelector('.specialTemplate')
+    // const specialChars_prime = specialCharsTemplate.content.cloneNode(true);
+
+    // Grabbing the container to house all the special chars buttons
+    const specialChars = document.querySelector('.specialCharsContainer');
+
+    // Get that special char template
+    const specialCharTemplate = document.querySelector('.specialChar');
+
+    for (let char of specialCharacters[languageB]) {
+        const specialChar_prime = specialCharTemplate.content.cloneNode(true); // Create clone 
+        const specialCharButton = specialChar_prime.querySelector('.sChar'); // Grab the button in the clone
+        
+        // Set the value and content of the button
+        specialCharButton.textContent = char;
+        specialCharButton.value = char;
+
+        // Add the clone to the container
+        specialChars.appendChild(specialChar_prime);
+    }
+
+    // Query to get all of the newly created buttons
+    const allSpecialChars = document.querySelectorAll('.sChar');
+
+    //  For each to make sure each button has the same functionality
+    allSpecialChars.forEach((btn) => {
+        // On click, add the button's value to the entry textfield
+        btn.addEventListener("click", () => {
+            gameEntry.textContent += btn.value;
+
+            // This is just copied from the "gameEntry.addEventListener" within this same function
+            // Not nice since its just copied code, definetly need to refactor to change entry's listener to something like "change"
+            gameCharLimit.textContent = `${gameEntry.textContent.length}/1000`
+            if (gameEntry.textContent.length > 1000) {
+                gameCharLimit.style.color = "#E44A36";
+            }
+            else {
+                gameCharLimit.style.color = "white";
+            }            
+        })
+    });
 
     // Starting at index 0, and since I had an alert from the previous phase, there will always be at least one sentence
     index = 0

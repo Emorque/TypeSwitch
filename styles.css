@@ -218,9 +218,6 @@ input {
     font-weight: bold;
 }
 
-/* .active, #collapsible:hover {
-    
-} */
 
 #collapsible_content, #collapsible_content2{
     /* display: none; */
@@ -241,4 +238,25 @@ input {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+/* Styling for the container and buttons for special characters */
+.specialCharsContainer {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 5px;
+
+    flex-wrap: wrap;    
+
+    width: 80%;
+    max-width: 500px;
+}
+
+.sChar{
+    /* width: 10px;
+    height: 10px; */
+    padding: 5px;
+    background-color: var(--primary);
+    color: black;
 }
