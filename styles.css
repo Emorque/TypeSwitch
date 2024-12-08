@@ -85,7 +85,7 @@ form {
     max-width: 400px;
 }
 
-#entryForm, .gameContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
+#entryForm, .gameContainer, .buttonContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,12 +106,8 @@ form {
     max-width: 700px;
 }
 
-#entry {
-    /* border-top-left-radius: 45%; */
-    /* border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; */
-    border-radius: 5px;
+.translationContainer {
+    gap: 10px;
 }
 
 /* input[type=submit] {
@@ -120,7 +116,7 @@ form {
     border-color: 99px solid white;
 } */
 
-#entry_submission {
+#entry_submission, .gameSubmission, #goToHome {
     background-color: #E44A36;
     border-radius: 50px;
     /* border-color: px solid white; */
@@ -168,6 +164,8 @@ fieldset div {
     min-height: 50px;
     word-wrap: break-word;
     white-space: normal;
+
+    border-radius: 5px;
 }
 
 #header, h2, h3, a, legend, strong {
@@ -179,7 +177,7 @@ input {
     color: var(--primary);
 }
 
-#entry_submission, .gameSubmission, .translationContainer{
+#entry_submission, .gameSubmission, #goToHome, .translationContainer{
     padding: 1rem;
     color: white;
 }

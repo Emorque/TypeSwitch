@@ -245,10 +245,10 @@ async function gamePhase(sentences, translator) {
     gameEntry.addEventListener("input", () => {
         gameCharLimit.textContent = `${gameEntry.textContent.length}/1000`
         if (gameEntry.textContent.length > 1000) {
-            gameCharLimit.style.color = "red";
+            gameCharLimit.style.color = "#E44A36";
         }
         else {
-            gameCharLimit.style.color = "#E44A36";
+            gameCharLimit.style.color = "white";
         }
     })
 
@@ -367,8 +367,18 @@ function gotoResults(sentences, userTranslations, geminiTranslations, score) {
                 
         document.body.appendChild(translations_prime); // Append the clone to the document 
     }
-}
 
+    const buttonTemplate = document.querySelector('.homeButton');
+    const button_prime = buttonTemplate.content.cloneNode(true); // Create a clone
+
+    const backHomeButton = button_prime.querySelector('#goToHome');
+    backHomeButton.addEventListener("click", () => {
+        location.reload();
+    })
+
+    document.body.appendChild(button_prime);
+
+}
 
 // button.addEventListener("click", testing);
 function testing() {
