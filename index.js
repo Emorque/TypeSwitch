@@ -90,15 +90,38 @@ const charCount = document.getElementById("char_limit");
 const punctuation = {
     "en": "!?.",
     "es": ".?!", //I did have "¡" and "¿" here, but I do want to keep these p. marks 
-    "ja": "。！？!?."
+    "ja": "。！？!?.",
+    "ar": ""
 };
 
 // Special Characters
 const specialCharacters = {
     "es": "áÁéÉíÍñÑóÓúÚü¡«»",
     "en": "",
-    "ja": ""
+    "ja": "",
+    "ar": ""
 };
+
+// Langauge A Form
+const dropdownButtonA = document.querySelector('.dropdownButtonA');
+const langAButtons = document.querySelectorAll('.langA');
+
+langAButtons.forEach((aBtn) => {
+    aBtn.addEventListener("click", () => {
+        dropdownButtonA.textContent = aBtn.textContent;
+    })
+})
+
+// Langauge B Form
+const dropdownButtonB = document.querySelector('.dropdownButtonB');
+const langBButtons = document.querySelectorAll('.langB');
+
+langBButtons.forEach((bBtn) => {
+    bBtn.addEventListener("click", () => {
+        dropdownButtonB.textContent = bBtn.textContent;
+    })
+})
+
 
 // Event Listener to update the charCount element so that the user can track their character count
 inputText.addEventListener("input", () => {

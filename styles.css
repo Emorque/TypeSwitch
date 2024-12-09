@@ -77,11 +77,11 @@ progress {
     /* color: red; */
 }
 
-#formContainer {
+/* #formContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 form {
     width: 90%;
@@ -89,10 +89,14 @@ form {
 }
 
 /* Consistant column format for all these containers */
-#entryForm, .gameContainer, .buttonContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
+#entryForm, #formContainer, .dropdownContainer, .dropdownContainerB, .gameContainer, .buttonContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#formContainer {
+    gap: 10px;
 }
 
 .scoreContainer {
@@ -275,4 +279,50 @@ input {
 
 #portfolio:hover {
     transform: translateY(-5px);
+}
+
+.dropdownContainer {
+    display: flex;  
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+}
+
+.dropdown, .dropdownB {
+    /* width: 90%; */
+    position: relative;
+    display: inline-block;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* max-width: 500px; */
+}
+
+.dropdownContent, .dropdownContentB {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    /* gap: 10px; */
+    /* background-color: #E44A36; */
+}
+
+.dropdownButtonA, .dropdownButtonB {
+    display: block;
+    width: 100%;
+    min-width: 160px;   
+}
+
+.dropdownContent button, .dropdownContentB button{
+    display: block;
+    width: 100%;
+    min-width: 160px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /* background-color: rebeccapurple; */
+}
+
+.dropdownContainer:hover .dropdownContent, .dropdownContainerB:hover .dropdownContentB {
+    /* background-color: #E44A36; */
+    display: block;
 }
