@@ -113,24 +113,51 @@ const langauges = {
 }
 
 // Langauge A Form
+
+const formA = document.querySelector('.dropdownContent');
 const dropdownButtonA = document.querySelector('.dropdownButtonA');
 const langAButtons = document.querySelectorAll('.langA');
 
 langAButtons.forEach((aBtn) => {
     aBtn.addEventListener("click", () => {
         dropdownButtonA.textContent = aBtn.textContent;
+        formA.style.display = "none";
     })
-})
+});
+
+// Form A button shows its langauges 
+dropdownButtonA.addEventListener('click', () => {
+    if (formA.style.display === "block"){
+        formA.style.display = "none";
+    }
+    else {
+        formA.style.display = "block";
+    }
+});
 
 // Langauge B Form
+const formB = document.querySelector('.dropdownContentB');
 const dropdownButtonB = document.querySelector('.dropdownButtonB');
 const langBButtons = document.querySelectorAll('.langB');
 
 langBButtons.forEach((bBtn) => {
     bBtn.addEventListener("click", () => {
         dropdownButtonB.textContent = bBtn.textContent;
+        formB.style.display = "none";
     })
-})
+});
+
+dropdownButtonB.addEventListener('click', () => {
+    if (formB.style.display === "block") {
+        formB.style.display = "none";
+    }
+    else {
+        formB.style.display = "block";
+    }
+});
+
+
+
 
 
 // Event Listener to update the charCount element so that the user can track their character count
@@ -154,10 +181,16 @@ function verifyEntry() {
     const langB = getLanguages(".dropdownButtonB");
 
     // If either language is unselected, alert user
-    if (langA === "null" || langB === "null") {
-        alert("Select A Language");
+    if (langA === "null") {
+        alert("Select a Language to Translate From");
         return;
     }
+
+    if (langB === "null") {
+        alert("Select a Language to Translate To");
+        return;
+    }
+
 
     // Get the subtag for the language
     const languageA = langauges[langA];
@@ -167,7 +200,7 @@ function verifyEntry() {
     // https://docs.google.com/document/d/1bzpeKk4k26KfjtR-_d9OuXLMpJdRMiLZAOVNMuFIejk/edit?tab=t.0
     // Will remove/edit this as support changes
     if ((languageA !== "en" && languageB !== "en")) {
-        alert(`Bi-directional Translations Between ${langA} and ${langB} are not yet Supported`);
+        alert(`Translations Between ${langA} and ${langB} are not yet supported`);
         return;
     }
 

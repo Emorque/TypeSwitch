@@ -28,19 +28,6 @@
 
             <!-- Steps on how to use TypeSwitch -->
             <div id="stepsContainer">
-                <!-- <h2>How To Get Started</h2>
-                <p>
-                    1) Select Your "Base" Language (The Language Your Original Text Is In).
-                </p>
-                <p>
-                    2) Select Your "Target" Language (The Language You Are Translating To).
-                </p>
-                <p>
-                    3) Copy & Paste some text from any source, whether it be from a book, blog, forum, or even AI.
-                </p> -->
-                <!-- <p id="collapsible">
-                    Unable to come up with some text?
-                </p> -->
                 <button id="collapsible">
                     Translations Not Working?
                 </button>
@@ -56,54 +43,10 @@
                 <br/>
             </div>
             
-
+            <!-- Container for both forms -->
             <div id="formContainer">
-                <!-- The Translation API is translation Language A into Language B -->
-                <!-- Form for selecting Language A-->
-                <form id="formA">
-                    <fieldset>
-                        <legend>Base Language</legend>
-                        <div>
-                            <input type="radio" id="englishA" class="radio" name="languageA" value="en" />
-                            <label for="englishA">English</label>
 
-                            <input type="radio" id="spanishA" class="radio" name="languageA" value="es" />
-                            <label for="spanishA">Spanish</label>
-
-                            <input type="radio" id="japaneseA" class="radio" name="languageA" value="ja" />
-                            <label for="japaneseA">Japanese</label>
-
-                            <input type="radio" id="arabicA" class="radio" name="languageA" value="ar" />
-                            <label for="arabicA">Arabic</label>
-                        </div>
-                    </fieldset>
-                </form>
-                
-                <!-- Form for selecting Language B-->
-                <form id="formB">
-                    <fieldset>
-                        <legend>Translation Language</legend>
-                        <div>
-                            <input type="radio" id="englishB" class="radio" name="languageB" value="en" />
-                            <label for="englishB">English</label>
-
-                            <input type="radio" id="spanishB" class="radio" name="languageB" value="es" />
-                            <label for="spanishB">Spanish</label>
-
-                            <input type="radio" id="japaneseB" class="radio" name="languageB" value="ja" />
-                            <label for="japaneseB">Japanese</label>
-
-                            <input type="radio" id="arabicB" class="radio" name="languageB" value="ar" />
-                            <label for="arabicB">Arabic</label>
-                        </div>
-                    </fieldset>
-                </form>
-
-            </div>
-
-            <br/>
-
-            <div id="formContainer">
+                <!-- Form A -->
                 <div class="dropdownContainer">
                     <div class="dropdown">
                         <button class="dropdownButtonA">Translate From</button>
@@ -131,6 +74,7 @@
                     </div>
                 </div>
                 
+                <!-- Form B -->
                 <div class="dropdownContainerB">
                     <div class="dropdownB">
                         <button class="dropdownButtonB">Translate To</button>
@@ -158,6 +102,8 @@
                     </div>
                 </div>
             </div>
+
+            <br/>
 
             <div id="entryForm">
                 <!-- Entry Field -->
