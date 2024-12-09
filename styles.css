@@ -319,7 +319,6 @@ input {
     min-width: 160px;
     padding-top: 2px;
     padding-bottom: 2px;
-    /* background-color: rebeccapurple; */
 }
 
 .dropdownContainer:hover .dropdownContent, .dropdownContainerB:hover .dropdownContentB {
