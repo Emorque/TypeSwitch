@@ -157,9 +157,6 @@ dropdownButtonB.addEventListener('click', () => {
 });
 
 
-
-
-
 // Event Listener to update the charCount element so that the user can track their character count
 inputText.addEventListener("input", () => {
     charCount.textContent = `${inputText.textContent.length}/1000`

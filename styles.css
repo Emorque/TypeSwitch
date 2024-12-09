@@ -92,6 +92,7 @@ form {
 #formContainer {
     display: flex;
     justify-content: center;
+    gap: 5px;
 }
 
 
@@ -278,7 +279,7 @@ input {
     display: flex;  
     justify-content: center;
     align-items: center;
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .dropdown, .dropdownB {
