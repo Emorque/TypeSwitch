@@ -16,7 +16,7 @@
                 <div id="header">
                     <img
                         src="Logo/TypeSwitch.svg"
-                        alt="TypeSwtich Logo"
+                        alt="TypeSwitch Logo"
                         width="100px"
                         height="100px"
                     />
@@ -28,19 +28,6 @@
 
             <!-- Steps on how to use TypeSwitch -->
             <div id="stepsContainer">
-                <!-- <h2>How To Get Started</h2>
-                <p>
-                    1) Select Your "Base" Language (The Language Your Original Text Is In).
-                </p>
-                <p>
-                    2) Select Your "Target" Language (The Language You Are Translating To).
-                </p>
-                <p>
-                    3) Copy & Paste some text from any source, whether it be from a book, blog, forum, or even AI.
-                </p> -->
-                <!-- <p id="collapsible">
-                    Unable to come up with some text?
-                </p> -->
                 <button id="collapsible">
                     Translations Not Working?
                 </button>
@@ -51,48 +38,71 @@
                     <p style="font-style: italic;">Please wait as language models and translation components are downloaded in the background</p>
                     <p>4) Go to: <strong>chrome://components</strong> and look for TranslateKit components to monitor progress</p>                        
                     <p>5) Translation API is now ready to translate English ⇔ Spanish and English ⇔ Japanese</p>
+                    <p>6) Go to <strong>chrome://on-device-translation-internals/</strong> to install all other needed pairs</p>
+                    <p style="font-style: italic;">Since the API is build into your browser, TypeSwitch can work offline</p>
                 </div>
 
                 <br/>
             </div>
             
-
+            <!-- Container for both forms -->
             <div id="formContainer">
-                <!-- The Translation API is translation Language A into Language B -->
-                <!-- Form for selecting Language A-->
-                <form id="formA">
-                    <fieldset>
-                        <legend>Base Language</legend>
-                        <div>
-                            <input type="radio" id="englishA" class="radio" name="languageA" value="en" />
-                            <label for="englishA">English</label>
 
-                            <input type="radio" id="spanishA" class="radio" name="languageA" value="es" />
-                            <label for="spanishA">Spanish</label>
-
-                            <input type="radio" id="japaneseA" class="radio" name="languageA" value="ja" />
-                            <label for="japaneseA">Japanese</label>
+                <!-- Form A -->
+                <div class="dropdownContainer">
+                    <div class="dropdown">
+                        <button class="dropdownButtonA">Translate From</button>
+                        <div class="dropdownContent">
+                            <button class="langA">English</button>
+                            <button class="langA">Spanish</button>
+                            <button class="langA">Japanese</button>
+                            <button class="langA">Arabic</button>
+                            <button class="langA">French</button>
+                            <button class="langA">Korean</button>
+                            <button class="langA">Russian</button>
+                            <button class="langA">Chinese</button>
+                            <button class="langA">Chinese (Traditional)</button>
+                            <button class="langA">Bengali</button>
+                            <button class="langA">Hindi</button>
+                            <button class="langA">Dutch</button>
+                            <button class="langA">Thai</button>
+                            <button class="langA">German</button>
+                            <button class="langA">Italian</button>
+                            <button class="langA">Polish</button>
+                            <button class="langA">Turkish</button>
+                            <button class="langA">Portuguese</button>
+                            <button class="langA">Vietnamese</button>
                         </div>
-                    </fieldset>
-                </form>
-
-                <!-- Form for selecting Language B-->
-                <form id="formB">
-                    <fieldset>
-                        <legend>Translation Language</legend>
-                        <div>
-                            <input type="radio" id="englishB" class="radio" name="languageB" value="en" />
-                            <label for="englishB">English</label>
-
-                            <input type="radio" id="spanishB" class="radio" name="languageB" value="es" />
-                            <label for="spanishB">Spanish</label>
-
-                            <input type="radio" id="japaneseB" class="radio" name="languageB" value="ja" />
-                            <label for="japaneseB">Japanese</label>
+                    </div>
+                </div>
+                
+                <!-- Form B -->
+                <div class="dropdownContainerB">
+                    <div class="dropdownB">
+                        <button class="dropdownButtonB">Translate To</button>
+                        <div class="dropdownContentB">
+                            <button class="langB">English</button>
+                            <button class="langB">Spanish</button>
+                            <button class="langB">Japanese</button>
+                            <button class="langB">Arabic</button>
+                            <button class="langB">French</button>
+                            <button class="langB">Korean</button>
+                            <button class="langB">Russian</button>
+                            <button class="langB">Chinese</button>
+                            <button class="langB">Chinese (Traditional)</button>
+                            <button class="langB">Bengali</button>
+                            <button class="langB">Hindi</button>
+                            <button class="langB">Dutch</button>
+                            <button class="langB">Thai</button>
+                            <button class="langB">German</button>
+                            <button class="langB">Italian</button>
+                            <button class="langB">Polish</button>
+                            <button class="langB">Turkish</button>
+                            <button class="langB">Portuguese</button>
+                            <button class="langB">Vietnamese</button>
                         </div>
-                    </fieldset>
-                </form>
-
+                    </div>
+                </div>
             </div>
 
             <br/>

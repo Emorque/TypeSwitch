@@ -1,32 +1,3 @@
-// const someUserText = 'Hello and a warm welcome to the Early Preview Program!';
-// const translation = await translator.translate(someUserText);
-
-// console.log(translation);
-// // Logs "¡Hola y una cálida bienvenida al programa de previsualización anticipada!"  
-
-// const languagePair = {
-//     sourceLanguage: 'en', // Or detect the source language with the Language Detection API
-//     targetLanguage: 'es',
-//   };
-  
-//   const canTranslate = await translation.canTranslate(languagePair);
-//   let translator;
-//   if (canTranslate !== 'no') {
-//     if (canTranslate === 'readily') {
-//       // The translator can immediately be used.
-//       translator = await translation.createTranslator(languagePair);
-//     }/* else {
-//       // The translator can be used after the model download.
-//       translator = await translation.createTranslator(languagePair);
-//       translator.addEventListener('downloadprogress', (e) => {
-//         console.log(e.loaded, e.total);
-//       });
-//       await translator.ready;
-//     } */
-//   } else {
-//       // The translator can't be used at all.
-//   }
-
 // Section for the starting page (text entry)
 
 // Getting both the collapsible button and content 
@@ -38,13 +9,6 @@ const collapsible_content2 = document.getElementById("collapsible_content2");
 
 // Adding collapsible animation for when button is clicked
 collapsibleButton.addEventListener("click", () => {
-    // collapsibleButton.classList.toggle("active");
-    // if (collapsible_content.style.display === "none") {
-    //     collapsible_content.style.display = "block";
-    // }
-    // else {
-    //     collapsible_content.style.display = "none";
-    // }
     if (collapsible_content.style.maxHeight) {
         collapsible_content.style.maxHeight = null;
     }
@@ -56,13 +20,6 @@ collapsibleButton.addEventListener("click", () => {
 
 // Adding collapsible animation for when button is clicked
 collapsibleButton2.addEventListener("click", () => {
-    // collapsibleButton.classList.toggle("active");
-    // if (collapsible_content.style.display === "none") {
-    //     collapsible_content.style.display = "block";
-    // }
-    // else {
-    //     collapsible_content.style.display = "none";
-    // }
     if (collapsible_content2.style.maxHeight) {
         collapsible_content2.style.maxHeight = null;
     }
@@ -90,15 +47,115 @@ const charCount = document.getElementById("char_limit");
 const punctuation = {
     "en": "!?.",
     "es": ".?!", //I did have "¡" and "¿" here, but I do want to keep these p. marks 
-    "ja": "。！？!?."
+    "ja": "。！？!?.",
+    "ar": "",
+    "fr": "",
+    "ko": "",
+    "ru": "",
+    "zh": "",
+    "zh-Hant": "",
+    "bn": "",
+    "hi": "",
+    "nl": "",
+    "th": "",
+    "de": "",
+    "it": "",
+    "pl": "",
+    "tr": "",
+    "pt": "",
+    "vi": "",
 };
 
 // Special Characters
 const specialCharacters = {
     "es": "áÁéÉíÍñÑóÓúÚü¡«»",
     "en": "",
-    "ja": ""
+    "ja": "",
+    "ar": "",
+    "fr": "",
+    "ko": "",
+    "ru": "",
+    "zh": "",
+    "zh-Hant": "",
+    "bn": "",
+    "hi": "",
+    "nl": "",
+    "th": "",
+    "de": "",
+    "it": "",
+    "pl": "",
+    "tr": "",
+    "pt": "",
+    "vi": "",
 };
+
+// Mapping from language to its subtag
+const langauges = {
+    "English": "en",
+    "Spanish": "es",
+    "Japanese": "ja",
+    "Arabic": "ar",
+    "French": "fr",
+    "Korean": "ko",
+    "Russian": "ru",
+    "Chinese": "zh",
+    "Chinese (Traditional)": "zh-Hant",
+    "Bengali": "bn",
+    "Hindi": "hi",
+    "Dutch": "nl",
+    "Thai": "th",
+    "German": "de",
+    "Italian": "it",
+    "Polish": "pl",
+    "Turkish": "tr",
+    "Portuguese": "pt",
+    "Vietnamese": "vi"
+}
+
+// Langauge A Form
+
+const formA = document.querySelector('.dropdownContent');
+const dropdownButtonA = document.querySelector('.dropdownButtonA');
+const langAButtons = document.querySelectorAll('.langA');
+
+langAButtons.forEach((aBtn) => {
+    aBtn.addEventListener("click", () => {
+        dropdownButtonA.textContent = aBtn.textContent;
+        formA.style.display = "none";
+    })
+});
+
+// Form A button shows its langauges 
+dropdownButtonA.addEventListener('click', () => {
+    if (formA.style.display === "block"){
+        formA.style.display = "none";
+    }
+    else {
+        formA.style.display = "block";
+    }
+});
+
+// Langauge B Form
+const formB = document.querySelector('.dropdownContentB');
+const dropdownButtonB = document.querySelector('.dropdownButtonB');
+const langBButtons = document.querySelectorAll('.langB');
+
+langBButtons.forEach((bBtn) => {
+    bBtn.addEventListener("click", () => {
+        dropdownButtonB.textContent = bBtn.textContent;
+        formB.style.display = "none";
+    })
+});
+
+dropdownButtonB.addEventListener('click', () => {
+    if (formB.style.display === "block") {
+        formB.style.display = "none";
+    }
+    else {
+        formB.style.display = "block";
+    }
+});
+
 
 // Event Listener to update the charCount element so that the user can track their character count
 inputText.addEventListener("input", () => {
@@ -117,20 +174,30 @@ button.addEventListener("click", verifyEntry);
 // Function to confirm that langauge selection and text entry is valid
 function verifyEntry() {
     // Calling to get the languages
-    const languageA = getLanguages("languageA");
-    const languageB = getLanguages("languageB");
+    const langA = getLanguages(".dropdownButtonA");
+    const langB = getLanguages(".dropdownButtonB");
 
     // If either language is unselected, alert user
-    if (languageA === "null" || languageB === "null") {
-        alert("Select A Language");
+    if (langA === "null") {
+        alert("Select a Language to Translate From");
         return;
     }
 
-    // Currently, the translation API is said to only support bi-directional translations bettwen English-Spanish and English-Japanese
+    if (langB === "null") {
+        alert("Select a Language to Translate To");
+        return;
+    }
+
+
+    // Get the subtag for the language
+    const languageA = langauges[langA];
+    const languageB = langauges[langB];
+
+    // Currently, the translation API is said to only support 18 language pairs
     // https://docs.google.com/document/d/1bzpeKk4k26KfjtR-_d9OuXLMpJdRMiLZAOVNMuFIejk/edit?tab=t.0
     // Will remove/edit this as support changes
-    if ((languageA === "es" && languageB === "ja") || (languageA === "ja" && languageB === "es")) {
-        alert("Bi-directional Translations Between Spanish and Japanese are not yet Supported");
+    if ((languageA !== "en" && languageB !== "en")) {
+        alert(`Translations Between ${langA} and ${langB} are not yet supported`);
         return;
     }
 
@@ -159,10 +226,13 @@ function verifyEntry() {
 
 // Function to obtain the Languages from the Forms 
 function getLanguages(form) {
-    const selected = document.querySelector(`input[name="${form}"]:checked`);
+    // const selected = document.querySelector(`input[name="${form}"]:checked`);
+    const selected = document.querySelector(form);
+    console.log(selected.textContent);
+
     // If a language is selected, reutrn it 
-    if (selected){
-        return selected.value;;
+    if (selected.textContent !== "Translate To" && selected.textContent !== "Translate From"){
+        return selected.textContent;
     }
     // Else, return "null"
     else {
@@ -259,10 +329,6 @@ async function gamePhase(sentences, translator, languageB) {
         }
     })
 
-    // Special Characters template
-    // const specialCharsTemplate = document.querySelector('.specialTemplate')
-    // const specialChars_prime = specialCharsTemplate.content.cloneNode(true);
-
     // Grabbing the container to house all the special chars buttons
     const specialChars = document.querySelector('.specialCharsContainer');
 
@@ -338,11 +404,6 @@ async function gamePhase(sentences, translator, languageB) {
         currentTranslation = await translator.translate(sentences[index]); // Grab the translation for that sentence
     })
 }
-
-// async function translateText(translator) {
-//     console.log(inputText.textContent);
-//     resultText.textContent = await translator.translate(inputText.textContent);
-// }
 
 function getScore(entry, translation) {
     // There are many ways of implementing how I could score how well the user translated their sentences
@@ -466,3 +527,34 @@ function testing() {
     // console.log((1 - (matrix[0][0] / Math.max(gameEntry.length, gameResult.length))) * 100);
     return (1 - (matrix[0][0] - Math.max(gameEntry.length, gameResult.length))) * 100;
 }
+
+
+// const someUserText = 'Hello and a warm welcome to the Early Preview Program!';
+// const translation = await translator.translate(someUserText);
+
+// console.log(translation);
+// // Logs "¡Hola y una cálida bienvenida al programa de previsualización anticipada!"  
+
+// const languagePair = {
+//     sourceLanguage: 'en', // Or detect the source language with the Language Detection API
+//     targetLanguage: 'es',
+//   };
+  
+//   const canTranslate = await translation.canTranslate(languagePair);
+//   let translator;
+//   if (canTranslate !== 'no') {
+//     if (canTranslate === 'readily') {
+//       // The translator can immediately be used.
+//       translator = await translation.createTranslator(languagePair);
+//     }/* else {
+//       // The translator can be used after the model download.
+//       translator = await translation.createTranslator(languagePair);
+//       translator.addEventListener('downloadprogress', (e) => {
+//         console.log(e.loaded, e.total);
+//       });
+//       await translator.ready;
+//     } */
+//   } else {
+//       // The translator can't be used at all.
+//   }
+

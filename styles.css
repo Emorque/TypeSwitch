@@ -9,7 +9,7 @@
     scroll-behavior: smooth;
 }
 
-/* Ton of boilerplate */
+/* Boilerplate */
 
 :root {
     --primary: #E44A36;
@@ -77,23 +77,24 @@ progress {
     /* color: red; */
 }
 
-#formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 form {
     width: 90%;
     max-width: 400px;
 }
 
 /* Consistant column format for all these containers */
-#entryForm, .gameContainer, .buttonContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
+#entryForm, .dropdownContainer, .dropdownContainerB, .gameContainer, .buttonContainer, .translationContainer, .scoreContainer, #stepsContainer, #infoContainer, #backgroundInfo, #headerContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+#formContainer {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
 
 .scoreContainer {
     text-align: center;
@@ -255,9 +256,6 @@ input {
 
 /* Styling for my own name */
 #eric {
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* margin-top: auto; */
     display: flex;
     align-items: center;
 
@@ -268,11 +266,52 @@ input {
         width: fit-content;
     }
 }
-
+/* Small animation to my logo*/
 #portfolio {
     transition: transform 0.5s ease;
 }
 
 #portfolio:hover {
     transform: translateY(-5px);
+}
+
+.dropdownContainer {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    /* min-width: 200px; */
+}
+
+.dropdown, .dropdownB {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown container for the languages*/
+.dropdownContent, .dropdownContentB {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    margin-top: 5px;
+}
+
+/* Styling for both the main button and the languages button */
+.dropdownButtonA, .dropdownContent button, .dropdownButtonB, .dropdownContentB button {
+    display: block;
+    width: 100%;
+    min-width: 160px;   
+
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: white;
+    border-radius: 2px;
+    
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* Margin to seperate languages with the main button*/
+.dropdownContent button, .dropdownContentB button {
+    margin-top: 2px;
 }
